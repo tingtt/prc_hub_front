@@ -19,5 +19,20 @@ module.exports = {
       ],
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        cupcake: {
+          ...require('daisyui/src/colors/themes')['[data-theme=cupcake]'],
+          'neutral-content': '#F8F8F8',
+        },
+      },
+      {
+        dark: {
+          ...require('daisyui/src/colors/themes')['[data-theme=night]'],
+        },
+      },
+    ],
+  },
+  plugins: [require('daisyui')],
 }
