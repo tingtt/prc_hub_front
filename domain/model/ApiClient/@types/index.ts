@@ -96,28 +96,40 @@ export type UpdateUserBody = {
 export type Event = {
   id: string
   title: string
+  description?: string | undefined
   location?: string | undefined
+  datetimes?: EventDatetime[] | undefined
   published: boolean
   completed: boolean
-  /** `true`の場合`event`情報更新後`completed: true`かつ`documents`がある場合にLINE notifyにリクエスト */
-  auto_notify_documents_enabled: boolean
   documents?: EventDocument[] | undefined
+}
+
+export type EventDatetime = {
+  start: string
+  end: string
 }
 
 export type CreateEventBody = {
   title: string
+  description?: string | undefined
   location?: string | undefined
+  datetimes?: CreateEventDatetime[] | undefined
   published?: boolean | undefined
   completed?: boolean | undefined
-  auto_notify_documents_enabled?: boolean | undefined
+}
+
+export type CreateEventDatetime = {
+  start: string
+  end: string
 }
 
 export type UpdateEventBody = {
   title?: string | undefined
+  description?: string | undefined
   location?: string | undefined
+  datetimes?: CreateEventDatetime[] | undefined
   published?: boolean | undefined
   completed?: boolean | undefined
-  auto_notify_documents_enabled?: boolean | undefined
 }
 
 export type EventDocument = {

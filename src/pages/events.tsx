@@ -26,27 +26,21 @@ const Events: NextPage = () => {
                     {event.title}
                   </div>
                   <div className='mt-1 text-lg'>藤島 拓大</div>
-                  {/* TODO: 日時の表示 */}
+                  {/* 日時の表示 */}
                   <div className='flex mt-1'>
-                    {[
-                      '2022-05-16T17:15:00+0900',
-                      '2022-05-17T17:15:00+0900',
-                      '2022-05-20T18:45:00+0900',
-                    ].map((datetime) => {
-                      const date = new Date(datetime)
+                    {(event.datetimes ?? []).map(({ start, end }) => {
+                      const date = new Date(start)
                       return (
                         <div
-                          key={`dt-${datetime}`}
-                          className='py-0.5 px-3 mr-2 w-max text-sm text-white whitespace-nowrap bg-primary-blue'
+                          key={`dt-${start}`}
+                          className='btn btn-xs btn-info rounded-none mr-2'
                         >
                           {`${date.getMonth() + 1}月${date.getDate()}日`}
                         </div>
                       )
                     })}
                   </div>
-                  <div className='mt-3 text-sm'>
-                    &nbsp;説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文説明文
-                  </div>
+                  <div className='mt-3 text-sm'>&nbsp;{event.description}</div>
                 </div>
                 <div className='flex mt-4'>
                   <div className='btn btn-sm btn-outline btn-info text-[0.95rem] fill-info hover:fill-info-content rounded-none'>
