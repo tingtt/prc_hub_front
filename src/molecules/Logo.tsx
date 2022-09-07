@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ReactTyped from 'react-typed'
 
 export const Logo = ({ title }: { title: string }) => {
   return (
@@ -21,9 +22,11 @@ export const Logo = ({ title }: { title: string }) => {
           bg-neutral px-20 py-2
         `}
       >
-        <p className='text-neutral-content text-4xl whitespace-nowrap'>
-          {title}
-        </p>
+        <ReactTyped
+          className='text-neutral-content text-4xl whitespace-nowrap'
+          strings={[title]}
+          typeSpeed={150}
+        />
       </div>
     </div>
   )

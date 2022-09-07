@@ -26,7 +26,12 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
         `}
       >
         {/* 左 */}
-        <div className='flex flex-col items-center'>
+        <div
+          className={`
+            flex flex-col items-center
+            opacity-0 animate-[fadein_2s_ease-in_2s_forwards]
+          `}
+        >
           <div className='text-2xl tracking-[.60em] text-shadow font-serif'>
             <VerticalText text='今ここにない' />
           </div>
@@ -51,7 +56,12 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
         {/* 中央 */}
         <div className='md:w-[80%] lg:w-0'></div>
         {/* 右 */}
-        <div className='text-2xl tracking-[.60em] text-shadow font-serif'>
+        <div
+          className={`
+            text-2xl tracking-[.60em] text-shadow font-serif
+            opacity-0 animate-[fadein_2s_ease-in_3s_forwards]
+          `}
+        >
           <VerticalText text={comment} />
         </div>
       </div>
