@@ -6,7 +6,7 @@ import { ImgPaintTopRight } from '../atoms/ImgPaintTopRight'
 export const TopPage = ({ comment }: { comment: string }) => {
   return (
     <div className='bg-noble-white relative w-screen h-screen'>
-      <div className='absolute z-1 bottom-8 right-8'>
+      <div className='absolute z-10 bottom-8 right-8'>
         <HamburgerMenu />
       </div>
       <div className='absolute bottom-0'>
