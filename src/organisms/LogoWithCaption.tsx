@@ -12,6 +12,7 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
           md:top-[50%] md:translate-y-[-50%]
           left-[50%] translate-x-[-50%]
           translate-y-[-46%]
+          font-serif font-bold
         `}
       >
         <Logo title='プログラム研究部' />
@@ -26,7 +27,7 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
       >
         {/* 左 */}
         <div className='flex flex-col items-center'>
-          <div className='text-2xl tracking-[.60em] text-shadow'>
+          <div className='text-2xl tracking-[.60em] text-shadow font-serif'>
             <VerticalText text='今ここにない' />
           </div>
           <div className='relative mt-1 flex'>
@@ -39,18 +40,18 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
             >
               <ImgPaintTextAccent />
             </div>
-            <div className='text-4xl tracking-[.60em] text-shadow z-10'>
+            <div className='text-4xl tracking-[.60em] text-shadow font-serif z-10'>
               <VerticalText text='未来' />
             </div>
           </div>
-          <div className='text-2xl tracking-[.60em] text-shadow'>
+          <div className='text-2xl tracking-[.60em] text-shadow font-serif'>
             <VerticalText text='はプロ研で創る。' />
           </div>
         </div>
         {/* 中央 */}
         <div className='md:w-[80%] lg:w-0'></div>
         {/* 右 */}
-        <div className='text-2xl tracking-[.60em] text-shadow'>
+        <div className='text-2xl tracking-[.60em] text-shadow font-serif'>
           <VerticalText text={comment} />
         </div>
       </div>
