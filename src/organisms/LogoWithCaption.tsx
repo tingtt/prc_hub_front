@@ -29,7 +29,6 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
           <div className='text-2xl tracking-[.60em] text-shadow'>
             <VerticalText text='今ここにない' />
           </div>
-          {/* TODO: z-indexを整える */}
           <div className='relative mt-1 flex'>
             <div
               className={`
@@ -40,7 +39,7 @@ export const LogoWithCaption = ({ comment }: { comment: string }) => {
             >
               <ImgPaintTextAccent />
             </div>
-            <div className='text-4xl tracking-[.60em] text-shadow'>
+            <div className='text-4xl tracking-[.60em] text-shadow z-10'>
               <VerticalText text='未来' />
             </div>
           </div>
