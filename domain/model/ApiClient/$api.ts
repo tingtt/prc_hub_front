@@ -105,12 +105,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           /**
            * @returns Success
            */
-          get: (option?: { config?: T | undefined } | undefined) =>
+          get: (option?: { query?: Methods1['get']['query'] | undefined, config?: T | undefined } | undefined) =>
             fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix1, GET, option).json(),
           /**
            * @returns Success
            */
-          $get: (option?: { config?: T | undefined } | undefined) =>
+          $get: (option?: { query?: Methods1['get']['query'] | undefined, config?: T | undefined } | undefined) =>
             fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
           /**
            * @returns Success
@@ -126,7 +126,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             fetch<void, BasicHeaders, Methods1['delete']['status']>(prefix, prefix1, DELETE, option).send(),
           $delete: (option?: { config?: T | undefined } | undefined) =>
             fetch<void, BasicHeaders, Methods1['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
-          $path: () => `${prefix}${prefix1}`
+          $path: (option?: { method?: 'get' | undefined; query: Methods1['get']['query'] } | undefined) =>
+            `${prefix}${prefix1}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
         }
       },
       /**

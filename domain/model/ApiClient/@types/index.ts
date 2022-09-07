@@ -31,6 +31,10 @@ export type Location_contain = {
   location_contain?: string | undefined
 }
 
+export type Embed = {
+  embed?: ('user' | 'documents')[] | undefined
+}
+
 export type User = {
   id: string
   name: string
@@ -95,10 +99,11 @@ export type UpdateUserBody = {
 
 export type Event = {
   id: string
-  title: string
+  name: string
+  user?: User | undefined
   description?: string | undefined
   location?: string | undefined
-  datetimes?: EventDatetime[] | undefined
+  datetimes: EventDatetime[]
   published: boolean
   completed: boolean
   documents?: EventDocument[] | undefined
@@ -110,7 +115,7 @@ export type EventDatetime = {
 }
 
 export type CreateEventBody = {
-  title: string
+  name: string
   description?: string | undefined
   location?: string | undefined
   datetimes?: CreateEventDatetime[] | undefined
@@ -124,7 +129,7 @@ export type CreateEventDatetime = {
 }
 
 export type UpdateEventBody = {
-  title?: string | undefined
+  name?: string | undefined
   description?: string | undefined
   location?: string | undefined
   datetimes?: CreateEventDatetime[] | undefined

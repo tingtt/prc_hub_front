@@ -7,7 +7,9 @@ export const getEvents = () => {
   return () =>
     useSWR('/events', async () => {
       try {
-        const res = await client.events.get()
+        const res = await client.events.get({
+          query: { embed: ['user', 'documents'] },
+        })
         return res.body
       } catch {
         return []
