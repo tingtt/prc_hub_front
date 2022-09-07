@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Event } from '../../domain/model/ApiClient/@types'
 import { ButtonInfoOutlinedSM } from '../atoms/ButtonInfoOutlinedSM'
 import { InfoLabel } from '../atoms/InfoLabel'
@@ -6,7 +5,6 @@ import { InfoLabel } from '../atoms/InfoLabel'
 export const EventListItem = ({ event }: { event: Event }) => {
   return (
     <div>
-      <div className='my-7 mx-auto w-full max-w-[800px] h-0.5 bg-base-content opacity-20'></div>
       <div className='flex justify-center mx-auto max-w-[800px]'>
         {/* TODO: イベント画像 */}
         {/* <div className='w-1/4 min-w-[200px] max-w-[540px]'>
