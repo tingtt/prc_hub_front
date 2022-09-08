@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Event } from '../../domain/model/ApiClient/@types'
 import { ButtonInfoOutlinedSM } from '../atoms/ButtonInfoOutlinedSM'
 import { InfoLabel } from '../atoms/InfoLabel'
