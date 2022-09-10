@@ -16,7 +16,7 @@ export const HamburgerMenu = () => {
           <path d='M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z' />
         </svg>
       </label>
-      <ul className='dropdown-content menu rounded-box p-2 mr-2 shadow bg-neutral'>
+      <ul className='dropdown-content menu rounded-box p-2 mr-2 shadow bg-neutral text-neutral-content'>
         <li className='whitespace-nowrap'>
           <Link href='/'>ホーム</Link>
         </li>
@@ -28,6 +28,9 @@ export const HamburgerMenu = () => {
         </li>
         <li className='whitespace-nowrap'>
           <Link href='#'>プロ研について</Link>
+        </li>
+        <li className='whitespace-nowrap'>
+          <Link href='login'>ログイン</Link>
         </li>
       </ul>
     </div>

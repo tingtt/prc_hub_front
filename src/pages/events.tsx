@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
-import { getEvents } from '../../application/ApiClient/getEvents'
+import { useEvents } from '../../application/ApiClient/events'
 import { EventListPage } from '../template/EventListPage'
 
 const Events: NextPage = () => {
-  const { data: events } = getEvents()()
+  const { data: events } = useEvents()
   return <EventListPage events={events ?? []} />
 }
 

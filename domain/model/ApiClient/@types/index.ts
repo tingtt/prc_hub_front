@@ -42,6 +42,7 @@ export type User = {
   github_username?: string | undefined
   twitter_id?: string | undefined
   post_event_availabled: boolean
+  manage: boolean
   admin: boolean
 }
 
