@@ -1,11 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { useSessionState } from '../../domain/model/Atom/token'
-import { useAuth } from '../ApiClient/auth'
 
-// TODO: useFormをgeneric化して抽象化
-export const useSignIn = () => {
-  const auth = useAuth()
-
+export const useSignIn = (
+  signInRequest: (email: string, password: string) => Promise<boolean>
+) => {
   type LoginForm = {
     email: string
     password: string
@@ -26,7 +24,7 @@ export const useSignIn = () => {
 
   const signIn = (callback: (success: boolean) => Promise<void>) => {
     return handleSubmit(async (data) => {
-      const success = await auth.signIn(data.email, data.password)
+      const success = await signInRequest(data.email, data.password)
       callback(success)
     })()
   }

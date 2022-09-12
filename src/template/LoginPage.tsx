@@ -1,4 +1,5 @@
 import { useAsyncFn } from 'react-use'
+import { useAuth } from '../../application/ApiClient/auth'
 import { useSignIn } from '../../application/Auth/signIn'
 import { ButtonPrimary } from '../atoms/ButtonPrimary'
 import { Input } from '../atoms/Input'
@@ -8,7 +9,9 @@ export const LoginPage = ({
 }: {
   singInRequestCallback: (success: boolean) => Promise<void>
 }) => {
-  const { registerEmail, registerPassword, signIn } = useSignIn()
+  const { registerEmail, registerPassword, signIn } = useSignIn(
+    useAuth().signIn
+  )
 
   const [_, doSignIn] = useAsyncFn(async () => {
     await signIn(singInRequestCallback)
