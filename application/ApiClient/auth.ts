@@ -1,17 +1,17 @@
 import { useApi } from '.'
-import { useSessionMutations } from '../../domain/model/Atom/token'
+import { useSetToken } from '../../domain/model/Atom/token'
 import { NEXT_PUBLIC_API_URL } from '../Env'
 
 // TODO: sign up
 export const useAuth = () => {
   const client = useApi(NEXT_PUBLIC_API_URL())
-  const { setSession } = useSessionMutations()
+  const { setToken } = useSetToken()
 
   const signIn = async (email: string, password: string) => {
     return await client.users.sign_in
       .$post({ body: { email, password } })
       .then(async (res) => {
-        await setSession(res.token)
+        await setToken(res.token)
         return true
       })
       .finally(() => {
@@ -20,7 +20,7 @@ export const useAuth = () => {
   }
 
   const signOut = async () => {
-    await setSession('')
+    await setToken('')
   }
 
   return { signIn, signOut }

@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { useSessionState } from '../../domain/model/Atom/token'
 
 export const useSignIn = (
   signInRequest: (email: string, password: string) => Promise<boolean>
@@ -34,11 +33,4 @@ export const useSignIn = (
     registerPassword,
     signIn,
   }
-}
-
-export const useIsSignedIn = () => {
-  const token = useSessionState()
-
-  // `null`か``(空文字)の場合は未ログイン
-  return token != null && token != ''
 }

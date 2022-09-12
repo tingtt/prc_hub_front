@@ -11,13 +11,16 @@ export const HamburgerMenu = ({
         {/* TODO: ボタンの画像を切り替え */}
         {/* hamburger icon */}
         <svg
-          className='fill-current'
+          width='24'
+          height='18'
+          viewBox='0 0 18 12'
+          fill='none'
           xmlns='http://www.w3.org/2000/svg'
-          width='32'
-          height='32'
-          viewBox='0 0 512 512'
         >
-          <path d='M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z' />
+          <path
+            d='M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z'
+            fill='black'
+          />
         </svg>
       </label>
       <ul className='dropdown-content menu rounded-box p-2 mr-2 shadow bg-neutral text-neutral-content'>

@@ -6,12 +6,19 @@ import { ImgPaintTopRight } from '../atoms/ImgPaintTopRight'
 export const TopPage = ({
   comment,
   isLoggedIn,
+  isAbleManaging,
+  suppressHydrationWarning,
 }: {
   comment: string
   isLoggedIn: boolean
+  isAbleManaging: boolean
+  suppressHydrationWarning?: boolean | undefined
 }) => {
   return (
-    <div className='relative w-screen h-screen'>
+    <div
+      className='relative w-screen h-screen'
+      suppressHydrationWarning={suppressHydrationWarning}
+    >
       <div className='absolute z-10 bottom-8 right-8'>
         <HamburgerMenu
           items={[
@@ -31,6 +38,19 @@ export const TopPage = ({
               href: '#',
               name: 'プロ研について',
             },
+            ...((): {
+              href: string
+              name: string
+            }[] => {
+              return isAbleManaging
+                ? [
+                    {
+                      href: '/manage',
+                      name: '管理者ページ',
+                    },
+                  ]
+                : []
+            })(),
             {
               href: isLoggedIn ? '/logout' : '/login',
               name: isLoggedIn ? 'ログアウト' : 'ログイン',

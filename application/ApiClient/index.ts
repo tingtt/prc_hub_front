@@ -1,9 +1,9 @@
 import api from '../../domain/model/ApiClient/$api'
 import aspida from '@aspida/fetch'
-import { useSessionState } from '../../domain/model/Atom/token'
+import { useToken } from '../../domain/model/Atom/token'
 
 export const useApi = (baseURL: string) => {
-  const token = useSessionState()
+  const { token } = useToken()
 
   let headers: HeadersInit | undefined
   if (token != null || token == '') {

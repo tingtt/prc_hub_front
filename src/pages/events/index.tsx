@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { getPermissions } from '../../application/Auth/permissions'
-import { useIsSignedIn } from '../../application/Auth/signedIn'
-import { TopPage } from '../template/TopPage'
+import { useEvents } from '../../../application/ApiClient/events'
+import { getPermissions } from '../../../application/Auth/permissions'
+import { useIsSignedIn } from '../../../application/Auth/signedIn'
+import { EventListPage } from '../../template/EventListPage'
 
-const Home: NextPage = () => {
+const Events: NextPage = () => {
+  const { data: events } = useEvents()
   const isLoggedIn = useIsSignedIn()
   const [permissions, setPermissions] = useState<{
     isAblePostingEvents: boolean
@@ -20,13 +22,14 @@ const Home: NextPage = () => {
   }, [isLoggedIn])
 
   return (
-    <TopPage
+    <EventListPage
       suppressHydrationWarning
-      comment='アプリを作りたいです。'
+      events={events ?? []}
       isLoggedIn={isLoggedIn}
+      isAblePostingEvents={permissions.isAblePostingEvents}
       isAbleManaging={permissions.isAbleManaging}
     />
   )
 }
 
-export default Home
+export default Events

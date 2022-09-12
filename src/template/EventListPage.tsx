@@ -1,16 +1,26 @@
+import { useRouter } from 'next/router'
 import { Event } from '../../domain/model/ApiClient/@types'
+import { ButtonPrimarySquare } from '../atoms/ButtonPrimarySquare'
 import { HamburgerMenu } from '../molecules/HamburgerMenu'
 import { EventList } from '../organisms/EventList'
 
 export const EventListPage = ({
   events,
   isLoggedIn,
+  isAblePostingEvents,
+  isAbleManaging,
+  suppressHydrationWarning,
 }: {
   events: Event[]
   isLoggedIn: boolean
+  isAblePostingEvents: boolean
+  isAbleManaging: boolean
+  suppressHydrationWarning?: boolean | undefined
 }) => {
+  const router = useRouter()
+
   return (
-    <div>
+    <div suppressHydrationWarning={suppressHydrationWarning}>
       <div className='flex flex-col relative'>
         <div
           className={`
@@ -22,11 +32,30 @@ export const EventListPage = ({
           予定されている勉強会
         </div>
         <div className='mx-auto px-10'>
-          {/* データ取得中のスケルトン表示 */}
+          {/* TODO: データ取得中のスケルトン表示 */}
           <EventList events={events} />
         </div>
       </div>
       <div className='sticky z-10 bottom-8 flex justify-end pr-8'>
+        {isAblePostingEvents && (
+          <div className='pr-4'>
+            <ButtonPrimarySquare
+              onClick={() => {
+                router.push('/events/new')
+              }}
+            >
+              <svg
+                width='22'
+                height='22'
+                viewBox='0 0 14 14'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z' fill='black' />
+              </svg>
+            </ButtonPrimarySquare>
+          </div>
+        )}
         <HamburgerMenu
           items={[
             {
@@ -45,6 +74,19 @@ export const EventListPage = ({
               href: '#',
               name: 'プロ研について',
             },
+            ...((): {
+              href: string
+              name: string
+            }[] => {
+              return isAbleManaging
+                ? [
+                    {
+                      href: '/manage',
+                      name: '管理者ページ',
+                    },
+                  ]
+                : []
+            })(),
             {
               href: isLoggedIn ? '/logout' : '/login',
               name: isLoggedIn ? 'ログアウト' : 'ログイン',

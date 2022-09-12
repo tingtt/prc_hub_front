@@ -1,26 +1,33 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()
 
-const sessionState = atom<string | null>({
-  key: 'session',
+const tokenState = atom<string | null>({
+  key: 'token',
   default: null,
   effects_UNSTABLE: [persistAtom],
 })
 
-export const useSessionState = () => {
-  return useRecoilValue(sessionState)
-}
+export const useSetToken = () => {
+  const setState = useSetRecoilState(tokenState)
 
-export const useSessionMutations = () => {
-  const setState = useSetRecoilState(sessionState)
-
-  const setSession = React.useCallback(
+  const setToken = React.useCallback(
     (token: string) => setState(token),
     [setState]
   )
 
-  return { setSession }
+  return { setToken }
+}
+
+export const useToken = () => {
+  //* Note: React Hydration Error
+  //  https://nextjs.org/docs/messages/react-hydration-error
+  const [isInitial, setIsInitial] = useState(true)
+  useEffect(() => {
+    setIsInitial(false)
+  }, [])
+  const token = useRecoilValue(tokenState)
+  return { token: isInitial === true ? null : token }
 }
