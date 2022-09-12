@@ -36,7 +36,7 @@ export const useSignIn = (
   }
 }
 
-export const useIsSignIn = () => {
+export const useIsSignedIn = () => {
   const token = useSessionState()
 
   // `null`か``(空文字)の場合は未ログイン
