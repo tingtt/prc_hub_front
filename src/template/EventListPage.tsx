@@ -21,7 +21,30 @@ export const EventListPage = ({ events: event }: { events: Event[] }) => {
         </div>
       </div>
       <div className='sticky z-10 bottom-8 flex justify-end pr-8'>
-        <HamburgerMenu />
+        <HamburgerMenu
+          items={[
+            {
+              href: '/',
+              name: 'ホーム',
+            },
+            {
+              href: '/events',
+              name: 'イベント情報',
+            },
+            {
+              href: '#',
+              name: '先輩の作品',
+            },
+            {
+              href: '#',
+              name: 'プロ研について',
+            },
+            {
+              href: '/login',
+              name: 'ログイン',
+            },
+          ]}
+        />
       </div>
     </div>
   )

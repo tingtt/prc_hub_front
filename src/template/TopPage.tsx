@@ -7,7 +7,30 @@ export const TopPage = ({ comment }: { comment: string }) => {
   return (
     <div className='relative w-screen h-screen'>
       <div className='absolute z-10 bottom-8 right-8'>
-        <HamburgerMenu />
+        <HamburgerMenu
+          items={[
+            {
+              href: '/',
+              name: 'ホーム',
+            },
+            {
+              href: '/events',
+              name: 'イベント情報',
+            },
+            {
+              href: '#',
+              name: '先輩の作品',
+            },
+            {
+              href: '#',
+              name: 'プロ研について',
+            },
+            {
+              href: '/login',
+              name: 'ログイン',
+            },
+          ]}
+        />
       </div>
       <div className='absolute bottom-0'>
         <ImgPaintBottomLeft />

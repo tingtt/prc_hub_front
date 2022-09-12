@@ -1,6 +1,10 @@
 import Link from 'next/link'
 
-export const HamburgerMenu = () => {
+export const HamburgerMenu = ({
+  items,
+}: {
+  items: { href: string; name: string }[]
+}) => {
   return (
     <div className='dropdown dropdown-left dropdown-end'>
       <label className='btn btn-lg btn-primary btn-square' tabIndex={0}>
@@ -17,21 +21,11 @@ export const HamburgerMenu = () => {
         </svg>
       </label>
       <ul className='dropdown-content menu rounded-box p-2 mr-2 shadow bg-neutral text-neutral-content'>
-        <li className='whitespace-nowrap'>
-          <Link href='/'>ホーム</Link>
-        </li>
-        <li className='whitespace-nowrap'>
-          <Link href='/events'>イベント情報</Link>
-        </li>
-        <li className='whitespace-nowrap'>
-          <Link href='#'>先輩の作品</Link>
-        </li>
-        <li className='whitespace-nowrap'>
-          <Link href='#'>プロ研について</Link>
-        </li>
-        <li className='whitespace-nowrap'>
-          <Link href='login'>ログイン</Link>
-        </li>
+        {items.map(({ href, name }) => (
+          <li className='whitespace-nowrap' key={name}>
+            <Link href={href}>{name}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   )
