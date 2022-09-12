@@ -19,6 +19,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function _(
           if (props.type == 'password') {
             return 'off'
           } else if (props.type == 'email') {
+            //* NOTE: emailを入力補完すると
+            //* Cannot read properties of undefined (reading 'toLowerCase')
+            //* となるため'off'
             return 'off'
           }
         })()}
