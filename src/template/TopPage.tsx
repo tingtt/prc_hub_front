@@ -3,7 +3,13 @@ import { LogoWithCaption } from '../organisms/LogoWithCaption'
 import { ImgPaintBottomLeft } from '../atoms/ImgPaintBottomLeft'
 import { ImgPaintTopRight } from '../atoms/ImgPaintTopRight'
 
-export const TopPage = ({ comment }: { comment: string }) => {
+export const TopPage = ({
+  comment,
+  isLoggedIn,
+}: {
+  comment: string
+  isLoggedIn: boolean
+}) => {
   return (
     <div className='relative w-screen h-screen'>
       <div className='absolute z-10 bottom-8 right-8'>
@@ -26,8 +32,8 @@ export const TopPage = ({ comment }: { comment: string }) => {
               name: 'プロ研について',
             },
             {
-              href: '/login',
-              name: 'ログイン',
+              href: isLoggedIn ? '/logout' : '/login',
+              name: isLoggedIn ? 'ログアウト' : 'ログイン',
             },
           ]}
         />

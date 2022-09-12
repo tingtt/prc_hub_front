@@ -1,8 +1,11 @@
 import type { NextPage } from 'next'
+import { useIsSignIn } from '../../application/Auth/signIn'
 import { TopPage } from '../template/TopPage'
 
 const Home: NextPage = () => {
-  return <TopPage comment='アプリを作りたいです。' />
+  const isLoggedIn = useIsSignIn()
+
+  return <TopPage comment='アプリを作りたいです。' isLoggedIn={isLoggedIn} />
 }
 
 export default Home

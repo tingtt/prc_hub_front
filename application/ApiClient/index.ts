@@ -6,7 +6,7 @@ export const useApi = (baseURL: string) => {
   const token = useSessionState()
 
   let headers: HeadersInit | undefined
-  if (token != null) {
+  if (token != null || token == '') {
     headers = {
       ...headers,
       Authorization: `Bearer ${token}`,

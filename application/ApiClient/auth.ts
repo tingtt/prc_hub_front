@@ -2,6 +2,7 @@ import { useApi } from '.'
 import { useSessionMutations } from '../../domain/model/Atom/token'
 import { NEXT_PUBLIC_API_URL } from '../Env'
 
+// TODO: sign up
 export const useAuth = () => {
   const client = useApi(NEXT_PUBLIC_API_URL())
   const { setSession } = useSessionMutations()
@@ -18,5 +19,9 @@ export const useAuth = () => {
       })
   }
 
-  return { signIn }
+  const signOut = async () => {
+    await setSession('')
+  }
+
+  return { signIn, signOut }
 }

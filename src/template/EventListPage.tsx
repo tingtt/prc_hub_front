@@ -2,7 +2,13 @@ import { Event } from '../../domain/model/ApiClient/@types'
 import { HamburgerMenu } from '../molecules/HamburgerMenu'
 import { EventList } from '../organisms/EventList'
 
-export const EventListPage = ({ events }: { events: Event[] }) => {
+export const EventListPage = ({
+  events,
+  isLoggedIn,
+}: {
+  events: Event[]
+  isLoggedIn: boolean
+}) => {
   return (
     <div>
       <div className='flex flex-col relative'>
@@ -40,8 +46,8 @@ export const EventListPage = ({ events }: { events: Event[] }) => {
               name: 'プロ研について',
             },
             {
-              href: '/login',
-              name: 'ログイン',
+              href: isLoggedIn ? '/logout' : '/login',
+              name: isLoggedIn ? 'ログアウト' : 'ログイン',
             },
           ]}
         />
