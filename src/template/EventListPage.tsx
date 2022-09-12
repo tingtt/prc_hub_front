@@ -2,7 +2,7 @@ import { Event } from '../../domain/model/ApiClient/@types'
 import { HamburgerMenu } from '../molecules/HamburgerMenu'
 import { EventList } from '../organisms/EventList'
 
-export const EventListPage = ({ events: event }: { events: Event[] }) => {
+export const EventListPage = ({ events }: { events: Event[] }) => {
   return (
     <div>
       <div className='flex flex-col relative'>
@@ -17,7 +17,7 @@ export const EventListPage = ({ events: event }: { events: Event[] }) => {
         </div>
         <div className='mx-auto px-10'>
           {/* データ取得中のスケルトン表示 */}
-          <EventList events={event} />
+          <EventList events={events} />
         </div>
       </div>
       <div className='sticky z-10 bottom-8 flex justify-end pr-8'>
