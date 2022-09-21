@@ -5,18 +5,13 @@ import { useToken } from '../../domain/model/Atom/token'
 export const useApi = (baseURL: string) => {
   const { token } = useToken()
 
-  let headers: HeadersInit | undefined
-  if (token != null || token == '') {
-    headers = {
-      ...headers,
-      Authorization: `Bearer ${token}`,
-    }
+  let headers: HeadersInit = {
+    'Content-Type': 'application/json',
   }
 
-  return api(
-    aspida(fetch, {
-      baseURL,
-      headers,
-    })
-  )
+  if (token != null && token != '') {
+    headers['Authorization'] = `Bearer ${token}`
+  }
+
+  return api(aspida(fetch, { baseURL, headers }))
 }

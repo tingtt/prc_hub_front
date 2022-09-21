@@ -1,4 +1,4 @@
-type Permission = {
+export type Permission = {
   isAblePostingEvents: boolean
   isAbleManaging: boolean
   isAdmin: boolean
