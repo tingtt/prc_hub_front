@@ -5,7 +5,7 @@ import { InfoLabel } from '../atoms/InfoLabel'
 export const EventListItem = ({ event }: { event: Event }) => {
   return (
     <div>
-      <div className='flex justify-center mx-auto max-w-[800px]'>
+      <div className='flex justify-center mx-auto'>
         {/* TODO: イベント画像 */}
         {/* <div className='w-1/4 min-w-[200px] max-w-[540px]'>
           <Image

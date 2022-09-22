@@ -31,7 +31,7 @@ export const EventListPage = ({
         >
           予定されている勉強会
         </div>
-        <div className='mx-auto px-10'>
+        <div className='px-10 mx-auto w-full max-w-[800px]'>
           {/* TODO: データ取得中のスケルトン表示 */}
           <EventList events={events} />
         </div>
