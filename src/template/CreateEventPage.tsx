@@ -63,9 +63,6 @@ export const CreateEventPage = () => {
                       type='datetime-local'
                       className='bg-base-100 dark:gray-date-picker'
                       {...registerStart}
-                      onChange={(e) => {
-                        console.log(e.target.value)
-                      }}
                     />
                   </td>
                   <td className='border-y border-r border-primary'>
@@ -128,9 +125,7 @@ export const CreateEventPage = () => {
       </div>
       <div className='w-full max-w-lg mt-4 flex justify-end'>
         <div className='w-max'>
-          <ButtonPrimary type='submit' onClick={doCreateEvent}>
-            登録
-          </ButtonPrimary>
+          <ButtonPrimary type='submit'>登録</ButtonPrimary>
         </div>
       </div>
     </form>
