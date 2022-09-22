@@ -22,6 +22,10 @@ export const useSetToken = () => {
 }
 
 export const useToken = () => {
+  return useRecoilValue(tokenState)
+}
+
+export const useTokenHydration = () => {
   //* Note: React Hydration Error
   //  https://nextjs.org/docs/messages/react-hydration-error
   const [isInitial, setIsInitial] = useState(true)

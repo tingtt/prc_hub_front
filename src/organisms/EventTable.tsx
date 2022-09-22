@@ -9,19 +9,21 @@ export const EventTable = ({
   enableAdimin: boolean
 }) => {
   return (
-    <div className='px-10 w-full table mt-4'>
+    <table className='px-10 w-full table mt-4'>
       <thead>
-        <th>イベント名</th>
-        <th>作成者</th>
-        <th>場所</th>
-        <th>日時</th>
-        <th>公開</th>
+        <tr>
+          <th>イベント名</th>
+          <th>作成者</th>
+          <th>場所</th>
+          <th>日時</th>
+          <th>公開</th>
+        </tr>
       </thead>
       <tbody>
         {events.map((event) => {
           return <EventTableRow event={event} key={event.id} />
         })}
       </tbody>
-    </div>
+    </table>
   )
 }

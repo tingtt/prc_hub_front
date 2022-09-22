@@ -3,7 +3,7 @@ import aspida from '@aspida/fetch'
 import { useToken } from '../../domain/model/Atom/token'
 
 export const useApi = (baseURL: string) => {
-  const { token } = useToken()
+  const token = useToken()
 
   let headers: HeadersInit = {
     'Content-Type': 'application/json',

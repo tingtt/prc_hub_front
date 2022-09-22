@@ -10,12 +10,12 @@ export const ManagePage = ({
   scope,
   users,
   events,
-  enableAdimin,
+  me,
 }: {
   scope: 'user' | 'event'
   users: User[]
   events: Event[]
-  enableAdimin: boolean
+  me: User
 }) => {
   return (
     <div className='flex flex-col items-center'>
@@ -58,12 +58,12 @@ export const ManagePage = ({
           ]}
         />
       </div>
-      {scope == 'user' && (
-        <UserTable users={users} enableAdimin={enableAdimin} />
-      )}
-      {scope == 'event' && (
-        <EventTable events={events} enableAdimin={enableAdimin} />
-      )}
+      <div className='px-10 mt-4 w-full'>
+        {scope == 'user' && <UserTable users={users} me={me} />}
+        {scope == 'event' && (
+          <EventTable events={events} enableAdimin={me.admin} />
+        )}
+      </div>
     </div>
   )
 }

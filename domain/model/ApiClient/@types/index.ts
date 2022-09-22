@@ -95,7 +95,7 @@ export type UpdateUserBody = {
   github_username?: string | undefined
   twitter_id?: string | undefined
   post_event_availabled?: boolean | undefined
-  admin?: boolean | undefined
+  manage?: boolean | undefined
 }
 
 export type Event = {

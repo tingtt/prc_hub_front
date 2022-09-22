@@ -8,6 +8,7 @@ import {
   Permission,
 } from '../../../application/Auth/permissions'
 import { useIsSignedIn } from '../../../application/Auth/signedIn'
+import { User } from '../../../domain/model/ApiClient/@types'
 import { ManagePage } from '../../template/ManagePage'
 
 const Manage: NextPage = () => {
@@ -21,6 +22,14 @@ const Manage: NextPage = () => {
     isAblePostingEvents: false,
     isAdmin: false,
   })
+  const me: User = {
+    id: '',
+    name: '',
+    email: '',
+    post_event_availabled: permissions.isAblePostingEvents,
+    manage: permissions.isAbleManaging,
+    admin: permissions.isAdmin,
+  }
 
   useEffect(() => {
     if (init) {
@@ -47,7 +56,7 @@ const Manage: NextPage = () => {
       scope={scope == 'user' || scope == 'event' ? scope : 'user'}
       users={users ?? []}
       events={events ?? []}
-      enableAdimin={permissions.isAdmin}
+      me={me}
     />
   )
 }

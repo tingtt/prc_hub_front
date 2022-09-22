@@ -1,27 +1,25 @@
 import { User } from '../../domain/model/ApiClient/@types'
 import { UserTableRow } from '../molecules/UserTableRow'
 
-export const UserTable = ({
-  users,
-  enableAdimin,
-}: {
-  users: User[]
-  enableAdimin: boolean
-}) => {
+export const UserTable = ({ users, me }: { users: User[]; me: User }) => {
   return (
-    <div className='px-10 w-full table mt-4'>
+    <table className='w-full table'>
       <thead>
-        <th>ユーザー名</th>
-        <th>メールアドレス</th>
-        <th>権限</th>
-        <th>GitHub</th>
-        <th>Twitter</th>
+        <tr>
+          <th>ユーザー名</th>
+          <th>メールアドレス</th>
+          <th>権限</th>
+          <th>GitHub</th>
+          <th>Twitter</th>
+        </tr>
       </thead>
       <tbody>
         {users.map((user) => {
-          return <UserTableRow user={user} key={user.id} />
+          return (
+            <UserTableRow user={user} key={user.id} isMe={user.id == me.id} />
+          )
         })}
       </tbody>
-    </div>
+    </table>
   )
 }
