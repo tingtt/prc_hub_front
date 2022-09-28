@@ -66,8 +66,8 @@ export const useCreateEvent = () => {
   const client = useApi(NEXT_PUBLIC_API_URL())
   const createEvent = (callback: (success: boolean) => Promise<void>) => {
     return handleSubmit(async (data) => {
-      const success = await client.events
-        .$post({
+      client.events
+        .post({
           body: {
             name: data.name,
             description: data.description,
@@ -76,15 +76,15 @@ export const useCreateEvent = () => {
             published: data.published,
           },
         })
-        .then((_) => {
-          // 登録成功
-          return true
+        .then((res) => {
+          if (res.status == 201) {
+            // 更新成功
+            callback(true)
+          } else {
+            // 更新失敗
+            callback(false)
+          }
         })
-        .finally(() => {
-          // 登録失敗
-          return false
-        })
-      callback(success)
     })()
   }
 
