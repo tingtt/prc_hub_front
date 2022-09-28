@@ -1,7 +1,19 @@
+import { useState } from 'react'
+import { useUpdateEvent } from '../../application/Event/update'
 import { Event } from '../../domain/model/ApiClient/@types'
 import { Checkbox } from '../atoms/Checkbox'
 
-export const EventTableRow = ({ event }: { event: Event }) => {
+export const EventTableRow = ({
+  event,
+  isMine,
+}: {
+  event: Event
+  isMine: boolean
+}) => {
+  const [published, setPublished] = useState(event.published)
+
+  const { updateEvent } = useUpdateEvent()
+
   return (
     <tr>
       <td>{event.name}</td>
@@ -20,7 +32,7 @@ export const EventTableRow = ({ event }: { event: Event }) => {
         </ul>
       </td>
       <td>
-        <Checkbox checked={event.published} />
+        <Checkbox checked={published} />
       </td>
     </tr>
   )

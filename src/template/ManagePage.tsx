@@ -60,9 +60,7 @@ export const ManagePage = ({
       </div>
       <div className='px-10 mt-4 w-full'>
         {scope == 'user' && <UserTable users={users} me={me} />}
-        {scope == 'event' && (
-          <EventTable events={events} enableAdimin={me.admin} />
-        )}
+        {scope == 'event' && <EventTable events={events} me={me} />}
       </div>
     </div>
   )

@@ -1,13 +1,7 @@
-import { Event } from '../../domain/model/ApiClient/@types'
+import { Event, User } from '../../domain/model/ApiClient/@types'
 import { EventTableRow } from '../molecules/EventTableRow'
 
-export const EventTable = ({
-  events,
-  enableAdimin,
-}: {
-  events: Event[]
-  enableAdimin: boolean
-}) => {
+export const EventTable = ({ events, me }: { events: Event[]; me: User }) => {
   return (
     <table className='px-10 w-full table mt-4'>
       <thead>
@@ -21,7 +15,13 @@ export const EventTable = ({
       </thead>
       <tbody>
         {events.map((event) => {
-          return <EventTableRow event={event} key={event.id} />
+          return (
+            <EventTableRow
+              event={event}
+              key={event.id}
+              isMine={event.user?.id == me.id}
+            />
+          )
         })}
       </tbody>
     </table>
