@@ -38,12 +38,12 @@ export const EventListItem = ({ event }: { event: Event }) => {
               })}
             </div>
             <div className='mt-6 text-sm'>
-              {event.description?.split('\\n').map((s) => {
+              {event.description?.split('\\n').map((str) => {
                 return (
-                  <>
-                    {s}
+                  <div key={`event-${event.id}-${str}`}>
+                    {str}
                     <br />
-                  </>
+                  </div>
                 )
               })}
             </div>
