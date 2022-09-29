@@ -47,11 +47,13 @@ export const CreateEventPage = () => {
       <div className='w-full max-w-lg mt-2'>
         <Input label={'場所'} {...registerLocation} />
       </div>
-      <div className='table w-full max-w-lg mt-4'>
+      <table className='table w-full max-w-lg mt-4'>
         <thead>
-          <th className='dark:bg-neutral'>開始日時</th>
-          <th className='dark:bg-neutral'>終了日時</th>
-          <th className='dark:bg-neutral'></th>
+          <tr>
+            <th className='dark:bg-neutral'>開始日時</th>
+            <th className='dark:bg-neutral'>終了日時</th>
+            <th className='dark:bg-neutral'></th>
+          </tr>
         </thead>
         <tbody>
           {registerDatetimes.map(
@@ -96,7 +98,7 @@ export const CreateEventPage = () => {
             }
           )}
         </tbody>
-      </div>
+      </table>
       <div className='w-full max-w-lg mt-2 flex justify-end'>
         <button
           className='btn btn-sm btn-primary'
