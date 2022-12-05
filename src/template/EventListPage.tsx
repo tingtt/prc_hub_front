@@ -24,10 +24,10 @@ export const EventListPage = ({
       <div className='flex flex-col relative'>
         <div
           className={`
-          my-20 pl-10 pr-5 py-2 w-max bg-neutral
-          text-neutral-content font-serif font-bold
-          text-3xl whitespace-nowrap shadow-md
-        `}
+            my-20 pl-10 pr-5 py-2 w-max bg-neutral
+            text-neutral-content font-serif font-bold
+            text-3xl whitespace-nowrap shadow-md
+          `}
         >
           予定されている勉強会
         </div>
