@@ -7,6 +7,7 @@ import { EventListPage } from '../../template/EventListPage'
 
 const Events: NextPage = () => {
   const { data: eventsData } = useEvents()
+  const loading = eventsData?.status == undefined
   const events = eventsData?.status == 200 ? eventsData?.body : []
   const isLoggedIn = useIsSignedIn()
   const [permissions, setPermissions] = useState<{
@@ -24,6 +25,7 @@ const Events: NextPage = () => {
 
   return (
     <EventListPage
+      loading={loading}
       suppressHydrationWarning
       events={events ?? []}
       isLoggedIn={isLoggedIn}
