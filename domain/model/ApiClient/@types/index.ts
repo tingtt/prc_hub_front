@@ -1,18 +1,10 @@
 /* eslint-disable */
 export type Id = {
-  id: string
+  id: number
 }
 
 export type Document_id = {
-  document_id: string
-}
-
-export type Oauth_providers = {
-  oauth_providers: 'github'
-}
-
-export type Line_notify_scope = {
-  scope?: 'event' | 'document' | undefined
+  document_id: number
 }
 
 export type Name = {
@@ -36,7 +28,7 @@ export type Embed = {
 }
 
 export type User = {
-  id: string
+  id: number
   name: string
   email: string
   github_username?: string | undefined
@@ -52,7 +44,7 @@ export type LoginBody = {
 }
 
 export type UserWithToken = {
-  id: string
+  id: number
   name: string
   email: string
   github_username?: string | undefined
@@ -74,20 +66,6 @@ export type CreateUserBody = {
   twitter_id?: string | undefined
 }
 
-export type CreateUserOverOauth2Body = {
-  access_token: string
-  expire_in: number
-  refresh_token: string
-  refresh_token_expire_in?: number | undefined
-  password: string
-}
-
-export type OAuth2ConnectBody = {
-  access_token: string
-  refresh_token: string
-  refresh_token_expire_in?: number | undefined
-}
-
 export type UpdateUserBody = {
   name?: string | undefined
   email?: string | undefined
@@ -99,7 +77,7 @@ export type UpdateUserBody = {
 }
 
 export type Event = {
-  id: string
+  id: number
   name: string
   user?: User | undefined
   description?: string | undefined
@@ -139,7 +117,7 @@ export type UpdateEventBody = {
 }
 
 export type EventDocument = {
-  id: string
+  id: number
   name: string
   url: string
 }

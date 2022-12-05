@@ -1,28 +1,26 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from '.'
-import type { Methods as Methods1 } from './_id@string'
-import type { Methods as Methods2 } from './_id@string/documents'
-import type { Methods as Methods3 } from './_id@string/documents/_document_id@string'
-import type { Methods as Methods4 } from './_id@string/webhook/line_notify'
+import type { Methods as Methods1 } from './_id@number'
+import type { Methods as Methods2 } from './_id@number/documents'
+import type { Methods as Methods3 } from './_id@number/documents/_document_id@number'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:1323' : baseURL).replace(/\/$/, '')
   const PATH0 = '/events'
   const PATH1 = '/documents'
-  const PATH2 = '/webhook/line_notify'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
   const PATCH = 'PATCH'
 
   return {
-    _id: (val0: string) => {
+    _id: (val0: number) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {
         documents: {
-          _document_id: (val2: string) => {
+          _document_id: (val2: number) => {
             const prefix2 = `${prefix0}${PATH1}/${val2}`
 
             return {
@@ -75,22 +73,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, `${prefix0}${PATH1}`, POST, option).json().then(r => r.body),
           $path: (option?: { method?: 'get' | undefined; query: Methods2['get']['query'] } | undefined) =>
             `${prefix}${prefix0}${PATH1}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
-        },
-        webhook: {
-          line_notify: {
-            /**
-             * アンケートURL・資料URLの送信。
-             */
-            post: (option?: { query?: Methods4['post']['query'] | undefined, config?: T | undefined } | undefined) =>
-              fetch<void, BasicHeaders, Methods4['post']['status']>(prefix, `${prefix0}${PATH2}`, POST, option).send(),
-            /**
-             * アンケートURL・資料URLの送信。
-             */
-            $post: (option?: { query?: Methods4['post']['query'] | undefined, config?: T | undefined } | undefined) =>
-              fetch<void, BasicHeaders, Methods4['post']['status']>(prefix, `${prefix0}${PATH2}`, POST, option).send().then(r => r.body),
-            $path: (option?: { method: 'post'; query: Methods4['post']['query'] } | undefined) =>
-              `${prefix}${prefix0}${PATH2}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
-          }
         },
         /**
          * @returns Success

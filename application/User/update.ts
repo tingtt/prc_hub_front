@@ -6,7 +6,7 @@ export const useUpdateUser = () => {
   const client = useApi(NEXT_PUBLIC_API_URL())
 
   const updateUser = (
-    id: string,
+    id: number,
     body: UpdateUserBody,
     callback: (success: boolean) => Promise<void>
   ) => {

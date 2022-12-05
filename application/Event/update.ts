@@ -6,7 +6,7 @@ export const useUpdateEvent = () => {
   const client = useApi(NEXT_PUBLIC_API_URL())
 
   const updateEvent = (
-    id: string,
+    id: number,
     body: UpdateEventBody,
     callback: (success: boolean) => Promise<void>
   ) => {

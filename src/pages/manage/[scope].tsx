@@ -23,7 +23,7 @@ const Manage: NextPage = () => {
     isAdmin: false,
   })
   const me: User = {
-    id: '',
+    id: 0,
     name: '',
     email: '',
     post_event_availabled: permissions.isAblePostingEvents,

@@ -1,23 +1,19 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from '.'
-import type { Methods as Methods1 } from './_id@string'
-import type { Methods as Methods2 } from './oauth2/_oauth_providers'
-import type { Methods as Methods3 } from './oauth2/_oauth_providers/register'
-import type { Methods as Methods4 } from './sign_in'
+import type { Methods as Methods1 } from './_id@number'
+import type { Methods as Methods2 } from './sign_in'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:1323' : baseURL).replace(/\/$/, '')
   const PATH0 = '/users'
-  const PATH1 = '/users/oauth2'
-  const PATH2 = '/register'
-  const PATH3 = '/users/sign_in'
+  const PATH1 = '/users/sign_in'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
   const PATCH = 'PATCH'
 
   return {
-    _id: (val0: string) => {
+    _id: (val0: number) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {
@@ -54,48 +50,18 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         $path: () => `${prefix}${prefix0}`
       }
     },
-    oauth2: {
-      _oauth_providers: (val1: number | string) => {
-        const prefix1 = `${PATH1}/${val1}`
-
-        return {
-          register: {
-            /**
-             * @returns Created
-             */
-            post: (option: { body: Methods3['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods3['post']['resBody'], BasicHeaders, Methods3['post']['status']>(prefix, `${prefix1}${PATH2}`, POST, option).json(),
-            /**
-             * @returns Created
-             */
-            $post: (option: { body: Methods3['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods3['post']['resBody'], BasicHeaders, Methods3['post']['status']>(prefix, `${prefix1}${PATH2}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH2}`
-          },
-          post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
-            fetch<void, BasicHeaders, Methods2['post']['status']>(prefix, prefix1, POST, option).send(),
-          $post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
-            fetch<void, BasicHeaders, Methods2['post']['status']>(prefix, prefix1, POST, option).send().then(r => r.body),
-          delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods2['delete']['status']>(prefix, prefix1, DELETE, option).send(),
-          $delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods2['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
-          $path: () => `${prefix}${prefix1}`
-        }
-      }
-    },
     sign_in: {
       /**
        * @returns Success
        */
-      post: (option: { body: Methods4['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods4['post']['resBody'], BasicHeaders, Methods4['post']['status']>(prefix, PATH3, POST, option).json(),
+      post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, PATH1, POST, option).json(),
       /**
        * @returns Success
        */
-      $post: (option: { body: Methods4['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods4['post']['resBody'], BasicHeaders, Methods4['post']['status']>(prefix, PATH3, POST, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH3}`
+      $post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, PATH1, POST, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH1}`
     },
     /**
      * @returns Success

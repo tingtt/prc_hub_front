@@ -6,6 +6,8 @@ export const useEvents = () => {
   const client = useApi(NEXT_PUBLIC_API_URL())
   return useAspidaSWR(client.events, 'get', {
     query: { embed: ['user', 'documents'] },
-    refreshInterval: 2000,
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
   })
 }
