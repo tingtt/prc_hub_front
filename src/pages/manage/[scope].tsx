@@ -50,6 +50,8 @@ const Manage: NextPage = () => {
 
   const events = eventsData?.status == 200 ? eventsData?.body : []
   const users = usersData?.status == 200 ? usersData?.body : []
+  const loadingEvents = eventsData?.status == undefined
+  const loadingUsers = usersData?.status == undefined
 
   return (
     <ManagePage
@@ -57,6 +59,8 @@ const Manage: NextPage = () => {
       users={users ?? []}
       events={events ?? []}
       me={me}
+      loadingEvents={loadingEvents}
+      loadingUsers={loadingUsers}
     />
   )
 }

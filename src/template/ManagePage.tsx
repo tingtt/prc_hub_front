@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { Event, User } from '../../domain/model/ApiClient/@types'
+import { Loading } from '../atoms/Loading'
 import { ButtonGroup } from '../molecules/ButtonGroup'
 import { EventTable } from '../organisms/EventTable'
 import { NavBar } from '../organisms/NavBar'
@@ -11,11 +12,15 @@ export const ManagePage = ({
   users,
   events,
   me,
+  loadingEvents,
+  loadingUsers,
 }: {
   scope: 'user' | 'event'
   users: User[]
   events: Event[]
   me: User
+  loadingEvents: boolean
+  loadingUsers: boolean
 }) => {
   return (
     <div className='flex flex-col items-center'>
@@ -59,8 +64,22 @@ export const ManagePage = ({
         />
       </div>
       <div className='px-10 mt-4 w-full'>
-        {scope == 'user' && <UserTable users={users} me={me} />}
-        {scope == 'event' && <EventTable events={events} me={me} />}
+        {scope == 'user' &&
+          (loadingUsers ? (
+            <div className='flex justify-center scale-[2] mt-8'>
+              <Loading />
+            </div>
+          ) : (
+            <UserTable users={users} me={me} />
+          ))}
+        {scope == 'event' &&
+          (loadingEvents ? (
+            <div className='flex justify-center scale-[2] mt-8'>
+              <Loading />
+            </div>
+          ) : (
+            <EventTable events={events} me={me} />
+          ))}
       </div>
     </div>
   )

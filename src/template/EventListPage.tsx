@@ -1,16 +1,19 @@
 import { useRouter } from 'next/router'
 import { Event } from '../../domain/model/ApiClient/@types'
 import { ButtonPrimarySquare } from '../atoms/ButtonPrimarySquare'
+import { Loading } from '../atoms/Loading'
 import { HamburgerMenu } from '../molecules/HamburgerMenu'
 import { EventList } from '../organisms/EventList'
 
 export const EventListPage = ({
+  loading,
   events,
   isLoggedIn,
   isAblePostingEvents,
   isAbleManaging,
   suppressHydrationWarning,
 }: {
+  loading: boolean
   events: Event[]
   isLoggedIn: boolean
   isAblePostingEvents: boolean
@@ -31,9 +34,14 @@ export const EventListPage = ({
         >
           予定されている勉強会
         </div>
-        <div className='px-10 mx-auto w-full max-w-[800px]'>
-          {/* TODO: データ取得中のスケルトン表示 */}
-          <EventList events={events} />
+        <div className='px-10 mx-auto w-full max-w-[800px] min-h-[60vh]'>
+          {loading ? (
+            <div className='flex justify-center scale-[2]'>
+              <Loading />
+            </div>
+          ) : (
+            <EventList events={events} />
+          )}
         </div>
       </div>
       <div className='sticky z-10 bottom-8 flex justify-end pr-8'>
