@@ -7,7 +7,8 @@ import type { Methods as Methods3 } from './events/_id@number/documents/_documen
 import type { Methods as Methods4 } from './reset'
 import type { Methods as Methods5 } from './users'
 import type { Methods as Methods6 } from './users/_id@number'
-import type { Methods as Methods7 } from './users/sign_in'
+import type { Methods as Methods7 } from './users/_id@number/star'
+import type { Methods as Methods8 } from './users/sign_in'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:1323' : baseURL).replace(/\/$/, '')
@@ -15,7 +16,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH1 = '/documents'
   const PATH2 = '/reset'
   const PATH3 = '/users'
-  const PATH4 = '/users/sign_in'
+  const PATH4 = '/star'
+  const PATH5 = '/users/sign_in'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
@@ -145,6 +147,19 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         const prefix1 = `${PATH3}/${val1}`
 
         return {
+          star: {
+            /**
+             * @returns Success
+             */
+            post: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, `${prefix1}${PATH4}`, POST, option).json(),
+            /**
+             * @returns Success
+             */
+            $post: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, `${prefix1}${PATH4}`, POST, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH4}`
+          },
           /**
            * @returns Success
            */
@@ -182,14 +197,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         /**
          * @returns Success
          */
-        post: (option: { body: Methods7['post']['reqBody'], config?: T | undefined }) =>
-          fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH4, POST, option).json(),
+        post: (option: { body: Methods8['post']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods8['post']['resBody'], BasicHeaders, Methods8['post']['status']>(prefix, PATH5, POST, option).json(),
         /**
          * @returns Success
          */
-        $post: (option: { body: Methods7['post']['reqBody'], config?: T | undefined }) =>
-          fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH4, POST, option).json().then(r => r.body),
-        $path: () => `${prefix}${PATH4}`
+        $post: (option: { body: Methods8['post']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods8['post']['resBody'], BasicHeaders, Methods8['post']['status']>(prefix, PATH5, POST, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH5}`
       },
       /**
        * @returns Success

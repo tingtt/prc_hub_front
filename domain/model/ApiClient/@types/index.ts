@@ -33,6 +33,7 @@ export type User = {
   email: string
   github_username?: string | undefined
   twitter_id?: string | undefined
+  star_count?: number | undefined
   post_event_availabled: boolean
   manage: boolean
   admin: boolean

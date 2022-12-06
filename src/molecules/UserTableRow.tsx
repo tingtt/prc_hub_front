@@ -22,8 +22,8 @@ export const UserTableRow = ({ user, isMe }: { user: User; isMe: boolean }) => {
   const [permission, setPermission] = useState(getPermissionStr(user))
 
   const [updating, setUpdating] = useState(false)
-  const { updateUser } = useUpdateUser()
-  const [_, doUpdateUser] = useAsyncFn(
+  const { updateUser, addStar } = useUpdateUser()
+  const [, doUpdateUser] = useAsyncFn(
     async (value: '-' | 'post_event_availabled' | 'manage') => {
       // <select>の`value`を更新
       setPermission(value)
@@ -52,6 +52,13 @@ export const UserTableRow = ({ user, isMe }: { user: User; isMe: boolean }) => {
     },
     []
   )
+  const [, doAddStar] = useAsyncFn(async (uesrId: number) => {
+    addStar(uesrId, async (success, body) => {
+      if (success) {
+        user.star_count = body.count + 1
+      }
+    })
+  }, [])
 
   return (
     <tr>
@@ -86,6 +93,17 @@ export const UserTableRow = ({ user, isMe }: { user: User; isMe: boolean }) => {
             管理者
           </option>
         </select>
+      </td>
+      <td>
+        <div className='flex items-center gap-4 max-w-[80px]'>
+          {user.star_count}
+          <div
+            className='btn btn-circle btn-sm ml-auto'
+            onClick={() => doAddStar(user.id)}
+          >
+            +
+          </div>
+        </div>
       </td>
       <td>
         <a

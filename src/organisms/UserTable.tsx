@@ -9,6 +9,7 @@ export const UserTable = ({ users, me }: { users: User[]; me: User }) => {
           <th>ユーザー名</th>
           <th>メールアドレス</th>
           <th>権限</th>
+          <th>スター数</th>
           <th>GitHub</th>
           <th>Twitter</th>
         </tr>

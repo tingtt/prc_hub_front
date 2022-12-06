@@ -24,5 +24,28 @@ export const useUpdateUser = () => {
       })
   }
 
-  return { updateUser }
+  const addStar = (
+    id: number,
+    callbask: (
+      success: boolean,
+      body: {
+        count: number
+      }
+    ) => Promise<void>
+  ) => {
+    client.users
+      ._id(id)
+      .star.post()
+      .then((res) => {
+        if (res.status == 200) {
+          // 更新成功
+          callbask(true, res.body)
+        } else {
+          // 更新失敗
+          callbask(false, res.body)
+        }
+      })
+  }
+
+  return { updateUser, addStar }
 }

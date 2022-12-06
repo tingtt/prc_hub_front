@@ -1,12 +1,14 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from '.'
 import type { Methods as Methods1 } from './_id@number'
-import type { Methods as Methods2 } from './sign_in'
+import type { Methods as Methods2 } from './_id@number/star'
+import type { Methods as Methods3 } from './sign_in'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:1323' : baseURL).replace(/\/$/, '')
   const PATH0 = '/users'
-  const PATH1 = '/users/sign_in'
+  const PATH1 = '/star'
+  const PATH2 = '/users/sign_in'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
@@ -17,6 +19,19 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {
+        star: {
+          /**
+           * @returns Success
+           */
+          post: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, `${prefix0}${PATH1}`, POST, option).json(),
+          /**
+           * @returns Success
+           */
+          $post: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, `${prefix0}${PATH1}`, POST, option).json().then(r => r.body),
+          $path: () => `${prefix}${prefix0}${PATH1}`
+        },
         /**
          * @returns Success
          */
@@ -54,14 +69,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       /**
        * @returns Success
        */
-      post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, PATH1, POST, option).json(),
+      post: (option: { body: Methods3['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods3['post']['resBody'], BasicHeaders, Methods3['post']['status']>(prefix, PATH2, POST, option).json(),
       /**
        * @returns Success
        */
-      $post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, PATH1, POST, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH1}`
+      $post: (option: { body: Methods3['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods3['post']['resBody'], BasicHeaders, Methods3['post']['status']>(prefix, PATH2, POST, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH2}`
     },
     /**
      * @returns Success
