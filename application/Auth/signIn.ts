@@ -13,11 +13,13 @@ export const useSignIn = (
   const registerEmail = {
     ...register('email', {
       required: 'Required',
+      value: 'throbbing-pond@prchub.com',
     }),
   }
   const registerPassword = {
     ...register('password', {
       required: 'Required',
+      value: 'throbbing-pond',
     }),
   }
 
