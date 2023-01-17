@@ -45,13 +45,8 @@ const Manage: NextPage = () => {
     setInit(true)
   }, [init, isLoggedIn, router, scope])
 
-  const { data: eventsData } = useEvents()
-  const { data: usersData } = useUsers()
-
-  const events = eventsData?.status == 200 ? eventsData?.body : []
-  const users = usersData?.status == 200 ? usersData?.body : []
-  const loadingEvents = eventsData?.status == undefined
-  const loadingUsers = usersData?.status == undefined
+  const { users } = useUsers()
+  const { events } = useEvents()
 
   return (
     <ManagePage
@@ -59,8 +54,8 @@ const Manage: NextPage = () => {
       users={users ?? []}
       events={events ?? []}
       me={me}
-      loadingEvents={loadingEvents}
-      loadingUsers={loadingUsers}
+      loadingEvents={events.length == 0}
+      loadingUsers={users.length == 0}
     />
   )
 }

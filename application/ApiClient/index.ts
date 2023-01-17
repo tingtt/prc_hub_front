@@ -7,6 +7,7 @@ export const useApi = (baseURL: string) => {
 
   let headers: HeadersInit = {
     'Content-Type': 'application/json',
+    'Accept-Encoding': 'gzip',
   }
 
   if (token != null && token != '') {

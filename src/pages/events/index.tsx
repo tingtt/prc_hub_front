@@ -6,9 +6,6 @@ import { useIsSignedIn } from '../../../application/Auth/signedIn'
 import { EventListPage } from '../../template/EventListPage'
 
 const Events: NextPage = () => {
-  const { data: eventsData } = useEvents()
-  const loading = eventsData?.status == undefined
-  const events = eventsData?.status == 200 ? eventsData?.body : []
   const isLoggedIn = useIsSignedIn()
   const [permissions, setPermissions] = useState<{
     isAblePostingEvents: boolean
@@ -23,9 +20,11 @@ const Events: NextPage = () => {
     }
   }, [isLoggedIn])
 
+  const { events } = useEvents()
+
   return (
     <EventListPage
-      loading={loading}
+      loading={events.length == 0}
       suppressHydrationWarning
       events={events ?? []}
       isLoggedIn={isLoggedIn}
